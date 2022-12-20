@@ -8,7 +8,7 @@ Global:
   eval_during_train: True
   eval_interval: 1
   start_eval_epoch: 10
-  epochs: 20
+  epochs: 40
   print_batch_step: 10
   use_visualdl: False
   # used for static mode and model export
@@ -54,7 +54,7 @@ DataLoader:
   Train:
     dataset:
       name: ImageNetDataset
-      image_root: ./dataset/logo_is_lighting/
+      image_root: ./dataset/logo_is_lighting/train/
       cls_label_path: ./dataset/logo_is_lighting/train/train_list.txt
       transform_ops:
         - DecodeImage:
@@ -84,18 +84,18 @@ DataLoader:
             mode: pixel
     sampler:
       name: DistributedBatchSampler
-      batch_size: 64
+      batch_size: 8
       drop_last: False
       shuffle: True
     loader:
-      num_workers: 8
+      num_workers: 0
       use_shared_memory: True
 
   Eval:
     dataset: 
       name: ImageNetDataset
-      image_root: ./dataset/person_exists/
-      cls_label_path: ./dataset/person_exists/val_list.txt
+      image_root: ./dataset/logo_is_lighting/val/
+      cls_label_path: ./dataset/logo_is_lighting/val/val_list.txt
       transform_ops:
         - DecodeImage:
             to_rgb: True
@@ -111,15 +111,16 @@ DataLoader:
             order: ''
     sampler:
       name: DistributedBatchSampler
-      batch_size: 64
+      batch_size: 8
       drop_last: False
       shuffle: False
     loader:
-      num_workers: 4
+      num_workers: 0
       use_shared_memory: True
 
 Infer:
-  infer_imgs: deploy/images/PULC/person_exists/objects365_02035329.jpg
+#  infer_imgs: dataset/logo_is_lighting/infer/0000063.jpg
+  infer_imgs: dataset/logo_is_lighting/infer/1671188400152_47757931.jpg
   batch_size: 10
   transforms:
     - DecodeImage:

@@ -46,8 +46,8 @@ DataLoader:
   Train:
     dataset:
       name: ImageNetDataset
-      image_root: ./dataset/flowers102/
-      cls_label_path: ./dataset/flowers102/train_list.txt
+      image_root: ./dataset/logo_is_lighting/train/
+      cls_label_path: ./dataset/logo_is_lighting/train/train_list.txt
       transform_ops:
         - DecodeImage:
             to_rgb: True
@@ -64,18 +64,18 @@ DataLoader:
 
     sampler:
       name: DistributedBatchSampler
-      batch_size: 32
+      batch_size: 4
       drop_last: False
       shuffle: True
     loader:
-      num_workers: 4
+      num_workers: 0
       use_shared_memory: True
 
   Eval:
     dataset: 
       name: ImageNetDataset
-      image_root: ./dataset/flowers102/
-      cls_label_path: ./dataset/flowers102/val_list.txt
+      image_root: ./dataset/logo_is_lighting/val/
+      cls_label_path: ./dataset/logo_is_lighting/val/val_list.txt
       transform_ops:
         - DecodeImage:
             to_rgb: True
@@ -91,11 +91,11 @@ DataLoader:
             order: ''
     sampler:
       name: DistributedBatchSampler
-      batch_size: 64
+      batch_size: 16
       drop_last: False
       shuffle: False
     loader:
-      num_workers: 4
+      num_workers: 0
       use_shared_memory: True
 
 Infer:
