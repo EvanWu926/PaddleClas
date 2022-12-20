@@ -62,7 +62,10 @@ def search_strategy():
     distill_config_file = configs.get("distill_config_file", None)
     model_name = config.get_config(base_config_file)["Arch"]["name"]
     gpus = configs["gpus"]
-    gpus = ",".join([str(i) for i in gpus])
+    if type(gpus) == int:
+        gpus ="0"
+    else:
+        gpus = ",".join([str(i) for i in gpus])
     base_program = [
         "python3.7", "-m", "paddle.distributed.launch",
         "--gpus={}".format(gpus), "tools/train.py", "-c", base_config_file

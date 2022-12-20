@@ -70,8 +70,8 @@ DataLoader:
   Train:
     dataset:
       name: ImageNetDataset
-      image_root: ./dataset/person_exists/
-      cls_label_path: ./dataset/person_exists/train_list_for_distill.txt
+      image_root: ./dataset/logo_is_lighting/train
+      cls_label_path: ./dataset/logo_is_lighting/train/train_list.txt
       transform_ops:
         - DecodeImage:
             to_rgb: True
@@ -110,7 +110,7 @@ DataLoader:
   Eval:
     dataset: 
       name: ImageNetDataset
-      image_root: ./dataset/logo_is_lighting/
+      image_root: ./dataset/logo_is_lighting/val
       cls_label_path: ./dataset/logo_is_lighting/val/val_list.txt
       transform_ops:
         - DecodeImage:
@@ -135,7 +135,7 @@ DataLoader:
       use_shared_memory: True
 
 Infer:
-  infer_imgs: deploy/images/PULC/person_exists/objects365_02035329.jpg
+  infer_imgs: dataset/logo_is_lighting/infer/1671184800124_78779577.jpg
   batch_size: 10
   transforms:
     - DecodeImage:
