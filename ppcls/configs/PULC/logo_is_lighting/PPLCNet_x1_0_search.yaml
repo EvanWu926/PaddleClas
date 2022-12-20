@@ -54,8 +54,8 @@ DataLoader:
   Train:
     dataset:
       name: ImageNetDataset
-      image_root: ./dataset/person_exists/
-      cls_label_path: ./dataset/person_exists/train_list.txt
+      image_root: ./dataset/logo_is_lighting/
+      cls_label_path: ./dataset/logo_is_lighting/train/train_list.txt
       transform_ops:
         - DecodeImage:
             to_rgb: True
@@ -137,9 +137,9 @@ Infer:
     - ToCHWImage:
   PostProcess:
     name: ThreshOutput
-    threshold: 0.5
-    label_0: nobody
-    label_1: someone
+    threshold: 0.8
+    label_0: nolight
+    label_1: islighting
 
 Metric:
   Train:

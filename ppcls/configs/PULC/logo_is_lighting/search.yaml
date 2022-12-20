@@ -37,4 +37,3 @@ teacher:
     - ResNet50_vd
 final_replace:
   Arch.lr_mult_list: Arch.models.1.Student.lr_mult_list
-
